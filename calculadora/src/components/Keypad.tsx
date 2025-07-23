@@ -1,8 +1,4 @@
-interface KeypadProps {
-  onPress: (value: string) => void;
-  scientificMode: boolean;
-}
-
+import type { KeypadProps } from "../types";
 
 const basicButtons: string[] = [
   '7', '8', '9', '/',
@@ -22,6 +18,8 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
     const allButtons = scientificMode
     ? [...scientificButtons, ...basicButtons]
     : basicButtons;
+    
+
     const getButtonClass = (value: string): string => {
         if (value === '=') return 'equal';
         if (value === 'C') return 'clear';
