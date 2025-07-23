@@ -1,42 +1,86 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* App.css */
+.app {
+  background-color: #1e1e1e;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 320px;
+  max-width: 90vw;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Display */
+.display {
+  background-color: #2b2b2b;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  text-align: right;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+  min-height: 60px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.display .expression {
+  font-size: 1rem;
+  color: #bbb;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.display .result {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #fff;
 }
 
-.card {
-  padding: 2em;
+/* Keypad */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
 }
 
-.read-the-docs {
-  color: #888;
+.keypad button {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.keypad button:hover {
+  background-color: #444;
+}
+
+.keypad button:active {
+  background-color: #555;
+}
+
+/* Cores especiais */
+.keypad button.operator {
+  background-color: #ff9500;
+  color: white;
+}
+
+.keypad button.equal {
+  background-color: #34c759;
+}
+
+.keypad button.clear {
+  background-color: #ff3b30;
+}
+
+.toggle-mode {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #444;
+  color: white;
+  cursor: pointer;
+}
+
+.toggle-mode:hover {
+  background-color: #666;
 }
