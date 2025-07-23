@@ -3,7 +3,8 @@ export function evaluateExpression(expr: string): number {
   const parsed = expr
     .replace(/sin/g, 'Math.sin')
     .replace(/cos/g, 'Math.cos')
-    .replace(/tan/g, 'Math.tan');
+    .replace(/tan/g, 'Math.tan')
+    .replace(/x/g, '*');
 
   // Avalia a expressão com segurança
   return Function('"use strict"; return (' + parsed + ')')();

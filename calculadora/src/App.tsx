@@ -36,7 +36,7 @@ function App() {
       </button>
 
       <Display expression={expression} result={result} />
-      <Keypad onPress={handleButtonPress} scientificMode={false} />
+      <Keypad onPress={handleButtonPress} scientificMode />
     </div>
   );
 }
