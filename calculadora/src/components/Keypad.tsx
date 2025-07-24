@@ -10,6 +10,7 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
         if (value === '=') return 'equal';
         if (value === 'C') return 'clear';
         if (value === '⌫') return 'backspace';
+        if (value === '()') return 'parenthesis';
         if (operationButtons.includes(value)) return 'operator';
         if (scientificButtons.includes(value)) return 'scientific';
         return '';

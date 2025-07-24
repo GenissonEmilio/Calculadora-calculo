@@ -112,3 +112,20 @@
 .keypad button.plus-minus {
   background-color: #333;
 }
+
+.keypad button.parenthesis {
+  background-color: #5ac8fa;
+  position: relative;
+}
+
+.keypad button.parenthesis::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  height: 2px;
+  background-color: white;
+  opacity: 0.3;
+}
