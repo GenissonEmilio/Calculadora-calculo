@@ -8,10 +8,7 @@ function App() {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
   const [scientificMode, setScientificMode] = useState(false);
-
-  const toggleScientificMode = () => {
-    setScientificMode(prev => !prev);
-  };
+  const [isParenthesisOpen, setIsParenthesisOpen] = useState(false);
 
   const handleButtonPress = (value: string) => {
     if (value === '=') {
@@ -24,6 +21,33 @@ function App() {
     } else if (value === 'C') {
       setExpression('');
       setResult('');
+    } else if (value === '⌫') {
+      setExpression(prev => prev.slice(0, -1));
+    } else if (value === '±') {
+      setExpression(prev => (prev.startsWith('-') ? prev.slice(1) : `-${prev}`));
+    } else if (value === 'TOGGLE_MODE') {
+      setScientificMode(prev => !prev);
+    } else if (value === 'x²') {
+      // Lógica especial para o quadrado
+      setExpression(prev => {
+        // Encontra o último número digitado
+        const lastNumberMatch = prev.match(/(\d+\.?\d*)$/);
+        if (lastNumberMatch) {
+          const lastNumber = lastNumberMatch[0];
+          return prev.replace(/(\d+\.?\d*)$/, `(${lastNumber})^2`);
+        }
+        return prev + '^2'; // Fallback caso não encontre número
+      });
+    } else if (value === '()') {
+      setExpression(prev => {
+        const lastChar = prev.slice(-1);
+        const shouldOpen = !isParenthesisOpen || 
+                         ['+', '-', '×', '÷', '^', '('].includes(lastChar) || 
+                         prev === '';
+        
+        setIsParenthesisOpen(shouldOpen);
+        return prev + (shouldOpen ? '(' : ')');
+      })
     } else {
       setExpression(prev => prev + value);
     }
@@ -31,12 +55,11 @@ function App() {
 
   return (
     <div className="app">
-      <button onClick={toggleScientificMode} className="toggle-mode">
-        {scientificMode ? 'Modo Básico' : 'Modo Científico'}
-      </button>
-
       <Display expression={expression} result={result} />
-      <Keypad onPress={handleButtonPress} scientificMode={scientificMode} />
+      <Keypad 
+        onPress={handleButtonPress} 
+        scientificMode={scientificMode} 
+      />
     </div>
   );
 }

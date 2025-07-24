@@ -8,7 +8,6 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Display */
 .display {
   background-color: #2b2b2b;
   padding: 1rem;
@@ -30,16 +29,45 @@
   color: #fff;
 }
 
-/* Keypad */
 .keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.top-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.main-area {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 0.5rem;
+}
+
+.numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.operations {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+}
+
+.scientific-buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
 }
 
 .keypad button {
-  padding: 1rem;
-  font-size: 1.2rem;
+  padding: 0.8rem;
+  font-size: 1.1rem;
   border: none;
   border-radius: 0.5rem;
   background-color: #333;
@@ -56,10 +84,9 @@
   background-color: #555;
 }
 
-/* Cores especiais */
+/* Estilos específicos */
 .keypad button.operator {
   background-color: #ff9500;
-  color: white;
 }
 
 .keypad button.equal {
@@ -70,17 +97,18 @@
   background-color: #ff3b30;
 }
 
-.toggle-mode {
-  margin-bottom: 1rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: #444;
-  color: white;
-  cursor: pointer;
+.keypad button.backspace {
+  background-color: #5856d6;
 }
 
-.toggle-mode:hover {
-  background-color: #666;
+.keypad button.mode-toggle {
+  background-color: #af52de;
+}
+
+.keypad button.scientific {
+  background-color: #5ac8fa;
+}
+
+.keypad button.plus-minus {
+  background-color: #333;
 }
