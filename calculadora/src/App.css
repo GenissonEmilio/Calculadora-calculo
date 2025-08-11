@@ -1,79 +1,117 @@
-/* App.css */
 .app {
-  background-color: #1e1e1e;
-  padding: 1rem;
-  border-radius: 1rem;
-  width: 320px;
-  max-width: 90vw;
+  background-color: #2a2a2a;
+  border-radius: 0.5rem;
+  width: 750px; /* Reduzido para 300px */
+  max-width: 95vw;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.tabs {
+  display: flex;
+  background-color: #1e1e1e;
+}
+
+.tab {
+  flex: 1;
+  padding: 0.75rem; /* Reduzido */
+  font-size: 0.9rem; /* Reduzido */
+  border: none;
+  background-color: transparent;
+  color: #bbb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab.active {
+  background-color: #2a2a2a;
+  color: white;
+  font-weight: bold;
+}
+
+.calculator-container {
+  padding: 0.3rem; /* Reduzido */
 }
 
 .display {
   background-color: #2b2b2b;
-  padding: 1rem;
+  padding: 0.4rem; /* Reduzido */
   border-radius: 0.5rem;
   text-align: right;
-  margin-bottom: 1rem;
-  word-wrap: break-word;
-  min-height: 60px;
+  margin-bottom: 0.75rem; /* Reduzido */
+  min-height: 30px; /* Reduzido */
 }
 
 .display .expression {
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reduzido */
   color: #bbb;
+  min-height: 18px; /* Reduzido */
 }
 
 .display .result {
-  font-size: 1.8rem;
+  font-size: 1.5rem; /* Reduzido */
   font-weight: bold;
   color: #fff;
+  min-height: 25px; /* Reduzido */
 }
 
 .keypad {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.top-controls {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.main-area {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 0.5rem;
+  gap: 0.4rem; /* Reduzido */
 }
 
-.numbers {
+.main-buttons {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.3rem; /* Reduzido */
+}
+
+.button-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem;
+  gap: 0.3rem; /* Reduzido */
 }
 
-.operations {
+.last-row {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.3rem;
+}
+
+.last-row button {
+  aspect-ratio: unset; /* Permite retângulos */
+  min-width: 90px; /* Largura mínima consistente */
+}
+
+.operation-buttons {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr); /* Agora 6 linhas (incluindo o ⌫) */
+  gap: 0.4rem;
 }
 
 .scientific-buttons {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.3rem; /* Reduzido */
+  margin-top: 0.4rem; /* Reduzido */
 }
 
 .keypad button {
-  padding: 0.8rem;
-  font-size: 1.1rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem; /* Reduzido */
+  font-size: 1rem; /* Reduzido */
   border: none;
-  border-radius: 0.5rem;
+  border-radius: 0.4rem; /* Reduzido */
   background-color: #333;
   color: white;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: all 0.2s ease;
+  min-height: 50px; /* Garante altura mínima */
 }
 
 .keypad button:hover {
@@ -84,7 +122,7 @@
   background-color: #555;
 }
 
-/* Estilos específicos */
+/* Cores específicas */
 .keypad button.operator {
   background-color: #ff9500;
 }
@@ -97,36 +135,16 @@
   background-color: #ff3b30;
 }
 
-.keypad button.backspace {
+.keypad button.function {
   background-color: #5856d6;
-}
-
-.keypad button.mode-toggle {
-  background-color: #af52de;
 }
 
 .keypad button.scientific {
   background-color: #5ac8fa;
 }
 
-.keypad button.plus-minus {
-  background-color: #333;
-}
-
-.keypad button.parenthesis {
-  background-color: #5ac8fa;
-  position: relative;
-}
-
-.keypad button.parenthesis::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60%;
-  height: 2px;
-  background-color: white;
-  opacity: 0.3;
+.keypad button.zero {
+  grid-column: span 1;
+  width: 100%;
 }
 

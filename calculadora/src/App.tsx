@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
-  const [scientificMode, setScientificMode] = useState(false);
+  const [mode, setMode] = useState<'basic' | 'scientific'>('basic');
   const [isParenthesisOpen, setIsParenthesisOpen] = useState(false);
 
   const handleButtonPress = (value: string) => {
@@ -26,17 +26,15 @@ function App() {
     } else if (value === '±') {
       setExpression(prev => (prev.startsWith('-') ? prev.slice(1) : `-${prev}`));
     } else if (value === 'TOGGLE_MODE') {
-      setScientificMode(prev => !prev);
+      setMode(prev => prev === 'basic' ? 'scientific' : 'basic');
     } else if (value === 'x²') {
-      // Lógica especial para o quadrado
       setExpression(prev => {
-        // Encontra o último número digitado
         const lastNumberMatch = prev.match(/(\d+\.?\d*)$/);
         if (lastNumberMatch) {
           const lastNumber = lastNumberMatch[0];
           return prev.replace(/(\d+\.?\d*)$/, `(${lastNumber})^2`);
         }
-        return prev + '^2'; // Fallback caso não encontre número
+        return prev + '^2';
       });
     } else if (value === '()') {
       setExpression(prev => {
@@ -55,11 +53,27 @@ function App() {
 
   return (
     <div className="app">
-      <Display expression={expression} result={result} />
-      <Keypad 
-        onPress={handleButtonPress} 
-        scientificMode={scientificMode} 
-      />
+      <div className="tabs">
+        <button 
+          className={`tab ${mode === 'basic' ? 'active' : ''}`}
+          onClick={() => setMode('basic')}
+        >
+          Básica
+        </button>
+        <button 
+          className={`tab ${mode === 'scientific' ? 'active' : ''}`}
+          onClick={() => setMode('scientific')}
+        >
+          Científica
+        </button>
+      </div>
+      <div className="calculator-container">
+        <Display expression={expression} result={result} />
+        <Keypad 
+          onPress={handleButtonPress} 
+          scientificMode={mode === 'scientific'} 
+        />
+      </div>
     </div>
   );
 }
