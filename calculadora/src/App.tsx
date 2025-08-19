@@ -36,6 +36,15 @@ function App() {
     } else if (value === 'sin') {
       setExpression(prev => prev + 'sin(');
       setIsParenthesisOpen(true);
+    } else if (value === 'x!') {
+      setExpression(prev => {
+        const lastNumberMatch = prev.match(/(\d+\.?\d*)$/);
+        if (lastNumberMatch) {
+          const lastNumber = lastNumberMatch[0];
+          return prev.replace(/(\d+\.?\d*)$/, `factorial(${lastNumber})`);
+        }
+        return prev + 'factorial(';
+      });
     } else if (value === 'cos') {
       setExpression(prev => prev + 'cos(');
       setIsParenthesisOpen(true);

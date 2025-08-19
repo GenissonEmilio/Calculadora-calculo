@@ -10,6 +10,17 @@ function factorial(n: number): number {
   return result;
 }
 
+function factorialFunc(x: number): number {
+  if (x < 0) throw new Error('Fatorial de número negativo');
+  if (!Number.isInteger(x)) throw new Error('Fatorial de número não inteiro');
+  
+  let result = 1;
+  for (let i = 2; i <= x; i++) {
+    result *= i;
+  }
+  return result;
+}
+
 // Converter graus para radianos
 function degreesToRadians(degrees: number): number {
   return degrees * (Math.PI / 180);
@@ -128,6 +139,17 @@ export function evaluateExpression(expr: string): number {
   // Primeiro, vamos processar manualmente as funções personalizadas
   const processFunctions = (expression: string): string => {
     let processed = expression;
+
+    // Processar factorial(...)
+    processed = processed.replace(/factorial\(([^()]+)\)/g, (match, inner) => {
+      try {
+        const innerValue = evaluateSimpleExpression(inner);
+        return String(factorialFunc(innerValue));
+      } catch (e) {
+        console.error('Erro em factorial:', e);
+        return match;
+      }
+    });
     
     // Processar sin(...)
     processed = processed.replace(/sin\(([^()]+)\)/g, (match, inner) => {
