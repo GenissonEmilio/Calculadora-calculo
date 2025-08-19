@@ -24,9 +24,9 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
 
                 {/* Linha 2 */}
                 <div className="button-row">
-                    <button className="function" onClick={() => onPress('1/x')}>1/x</button>
+                    <button className="function" onClick={() => onPress('1/')}>1/x</button>
                     <button className="function" onClick={() => onPress('x²')}>x²</button>
-                    <button className="function" onClick={() => onPress('√x')}>√x</button>
+                    <button className="function" onClick={() => onPress('√(')}>√x</button>
                 </div>
 
                 {/* Números */}

@@ -27,6 +27,36 @@ function App() {
       setExpression(prev => (prev.startsWith('-') ? prev.slice(1) : `-${prev}`));
     } else if (value === 'TOGGLE_MODE') {
       setMode(prev => prev === 'basic' ? 'scientific' : 'basic');
+    } else if (value === 'eˣ') {
+      setExpression(prev => prev + 'e^(');
+      setIsParenthesisOpen(true); // Marca que abrimos um parêntese
+    } else if (value === 'log') {
+      setExpression(prev => prev + 'log(');
+      setIsParenthesisOpen(true);
+    } else if (value === 'sin') {
+      setExpression(prev => prev + 'sin(');
+      setIsParenthesisOpen(true);
+    } else if (value === 'cos') {
+      setExpression(prev => prev + 'cos(');
+      setIsParenthesisOpen(true);
+    } else if (value === '()') {
+      setExpression(prev => {
+        const openCount = (prev.match(/\(/g) || []).length;
+        const closeCount = (prev.match(/\)/g) || []).length;
+        const isOpen = openCount > closeCount;
+        
+        if (isOpen) {
+          setIsParenthesisOpen(false);
+          return prev + ')';
+        } else {
+          const lastChar = prev.slice(-1);
+          const canOpen = ['+', '-', '×', '÷', '^', '(', ''].includes(lastChar) || 
+                        /[0-9]/.test(lastChar) === false;
+          
+          setIsParenthesisOpen(canOpen);
+          return prev + (canOpen ? '(' : '×(');
+        }
+      });
     } else if (value === 'x²') {
       setExpression(prev => {
         const lastNumberMatch = prev.match(/(\d+\.?\d*)$/);
@@ -38,14 +68,31 @@ function App() {
       });
     } else if (value === '()') {
       setExpression(prev => {
+    // Contar parênteses abertos e fechados
+    const openCount = (prev.match(/\(/g) || []).length;
+    const closeCount = (prev.match(/\)/g) || []).length;
+    const isOpen = openCount > closeCount;
+    
+    // Se há mais parênteses abertos, fechar
+    if (isOpen) {
+      setIsParenthesisOpen(false);
+      return prev + ')';
+    } else {
+        // Verificar se podemos abrir um novo parêntese
         const lastChar = prev.slice(-1);
-        const shouldOpen = !isParenthesisOpen || 
-                         ['+', '-', '×', '÷', '^', '('].includes(lastChar) || 
-                         prev === '';
+        const canOpen = ['+', '-', '×', '÷', '^', '(', ''].includes(lastChar) || 
+                      /[0-9]/.test(lastChar) === false;
         
-        setIsParenthesisOpen(shouldOpen);
-        return prev + (shouldOpen ? '(' : ')');
-      })
+        if (canOpen) {
+          setIsParenthesisOpen(true);
+          return prev + '(';
+        } else {
+          // Se não pode abrir, adicionar operador de multiplicação implícita
+          setIsParenthesisOpen(true);
+          return prev + '×(';
+        }
+      }
+    });
     } else {
       setExpression(prev => prev + value);
     }
