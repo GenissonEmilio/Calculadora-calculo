@@ -6,7 +6,7 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
         if (value === 'C') return 'clear';
         if (['%', '()', '1/x', 'x²', '√x'].includes(value)) return 'function';
         if (['÷', '×', '-', '+', '⌫'].includes(value)) return 'operator'; // ⌫ agora é operator
-        if (['π', 'eˣ', 'mod', 'sin', 'cos', 'log'].includes(value)) return 'scientific';
+        if (['π', 'eˣ', 'x!', 'sin', 'cos', 'log'].includes(value)) return 'scientific';
         if (value === '0') return 'zero';
         return '';
     };
@@ -57,7 +57,7 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
                         <div className="scientific-buttons">
                             <button className="scientific" onClick={() => onPress('π')}>π</button>
                             <button className="scientific" onClick={() => onPress('eˣ')}>eˣ</button>
-                            <button className="scientific" onClick={() => onPress('mod')}>mod</button>
+                            <button className="scientific" onClick={() => onPress('x!')}>x!</button>
                         </div>
                         <div className="scientific-buttons">
                             <button className="scientific" onClick={() => onPress('sin')}>sin</button>
