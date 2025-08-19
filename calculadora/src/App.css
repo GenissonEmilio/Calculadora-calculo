@@ -1,76 +1,76 @@
 .app {
-  background-color: #2a2a2a;
+  background-color: #f8e8f5; /* Rosa bem clarinho */
   border-radius: 0.5rem;
-  width: 750px; /* Reduzido para 300px */
+  width: 750px;
   max-width: 95vw;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 30px rgba(175, 82, 222, 0.4); /* Roxo suave */
   overflow: hidden;
 }
 
 .tabs {
   display: flex;
-  background-color: #1e1e1e;
+  background-color: #e5b8f0; /* Lilás */
 }
 
 .tab {
   flex: 1;
-  padding: 0.75rem; /* Reduzido */
-  font-size: 0.9rem; /* Reduzido */
+  padding: 0.75rem;
+  font-size: 0.9rem;
   border: none;
   background-color: transparent;
-  color: #bbb;
+  color: #7d3c98; /* Roxo escuro */
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .tab.active {
-  background-color: #2a2a2a;
+  background-color: #d98cd6; /* Roxo mais vivo */
   color: white;
   font-weight: bold;
 }
 
 .calculator-container {
-  padding: 0.3rem; /* Reduzido */
+  padding: 0.3rem;
 }
 
 .display {
-  background-color: #2b2b2b;
-  padding: 0.4rem; /* Reduzido */
+  background-color: #f3d6f8; /* Rosa lilás */
+  padding: 0.4rem;
   border-radius: 0.5rem;
   text-align: right;
-  margin-bottom: 0.75rem; /* Reduzido */
-  min-height: 30px; /* Reduzido */
+  margin-bottom: 0.75rem;
+  min-height: 30px;
 }
 
 .display .expression {
-  font-size: 0.9rem; /* Reduzido */
-  color: #bbb;
-  min-height: 18px; /* Reduzido */
+  font-size: 0.9rem;
+  color: #8e44ad; /* Roxo */
+  min-height: 18px;
 }
 
 .display .result {
-  font-size: 1.5rem; /* Reduzido */
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #fff;
-  min-height: 25px; /* Reduzido */
+  color: #6c3483; /* Roxo escuro */
+  min-height: 25px;
 }
 
 .keypad {
   display: grid;
   grid-template-columns: 3fr 1fr;
-  gap: 0.4rem; /* Reduzido */
+  gap: 0.4rem;
 }
 
 .main-buttons {
   display: grid;
   grid-template-rows: repeat(6, 1fr);
-  gap: 0.3rem; /* Reduzido */
+  gap: 0.3rem;
 }
 
 .button-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.3rem; /* Reduzido */
+  gap: 0.3rem;
 }
 
 .last-row {
@@ -80,13 +80,13 @@
 }
 
 .last-row button {
-  aspect-ratio: unset; /* Permite retângulos */
-  min-width: 90px; /* Largura mínima consistente */
+  aspect-ratio: unset;
+  min-width: 90px;
 }
 
 .operation-buttons {
   display: grid;
-  grid-template-rows: repeat(6, 1fr); /* Agora 6 linhas (incluindo o ⌫) */
+  grid-template-rows: repeat(6, 1fr);
   gap: 0.4rem;
 }
 
@@ -94,8 +94,8 @@
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.2rem; /* Reduzido */
-  margin-top: 0.02rem; /* Reduzido */
+  gap: 0.2rem;
+  margin-top: 0.02rem;
 }
 
 .keypad button {
@@ -103,48 +103,47 @@
   width: 100%;
   justify-content: center;
   align-items: center;
-  padding: 0.3rem; /* Reduzido */
-  font-size: 1rem; /* Reduzido */
+  padding: 0.3rem;
+  font-size: 1rem;
   border: none;
-  border-radius: 0.4rem; /* Reduzido */
-  background-color: #333;
-  color: white;
+  border-radius: 0.4rem;
+  background-color: #eab0f1; /* Rosa lilás base */
+  color: #fff;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-height: 50px; /* Garante altura mínima */
+  min-height: 50px;
 }
 
 .keypad button:hover {
-  background-color: #444;
+  background-color: #d38be2; /* Roxo mais forte no hover */
 }
 
 .keypad button:active {
-  background-color: #555;
+  background-color: #b76dd0; /* Roxo profundo no clique */
 }
 
 /* Cores específicas */
 .keypad button.operator {
-  background-color: #ff9500;
+  background-color: #f06292; /* Rosa vibrante */
 }
 
 .keypad button.equal {
-  background-color: #34c759;
+  background-color: #ab47bc; /* Roxo médio */
 }
 
 .keypad button.clear {
-  background-color: #ff3b30;
+  background-color: #ec407a; /* Rosa choque */
 }
 
 .keypad button.function {
-  background-color: #5856d6;
+  background-color: #ba68c8; /* Roxo suave */
 }
 
 .keypad button.scientific {
-  background-color: #5ac8fa;
+  background-color: #f48fb1; /* Rosa claro */
 }
 
 .keypad button.zero {
   grid-column: span 1;
   width: 100%;
 }
-
