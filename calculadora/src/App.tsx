@@ -100,6 +100,13 @@ function App() {
 
   return (
     <div className="app">
+      {/* Laço no canto */}
+      <img 
+        src="https://gallery.yopriceville.com/var/resizes/Free-Clipart-Pictures/Ribbons-and-Banners-PNG/Pink_Bow_Transparent_PNG_Clipart.png?m=1629832770" 
+        alt="Laço decorativo" 
+        className="laco"
+      />
+      
       <div className="tabs">
         <button 
           className={`tab ${mode === 'basic' ? 'active' : ''}`}

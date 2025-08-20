@@ -1,10 +1,20 @@
 .app {
+  position: relative;
   background-color: #f8e8f5; /* Rosa bem clarinho */
   border-radius: 0.5rem;
   width: 750px;
   max-width: 95vw;
   box-shadow: 0 0 30px rgba(175, 82, 222, 0.4); /* Roxo suave */
-  overflow: hidden;
+  overflow: visible;
+}
+
+.laco {
+  position: absolute;
+  top: -30px;
+  left: -39px;
+  width: 120px;
+  transform: rotate(-30deg);
+  pointer-events: none;
 }
 
 .tabs {

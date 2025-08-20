@@ -1,3 +1,5 @@
+import { AiOutlineBackward } from "react-icons/ai";
+import { FaDivide, FaTimes, FaPlus, FaMinus, FaEquals } from "react-icons/fa";
 import type { KeypadProps } from "../types";
 
 export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
@@ -5,7 +7,7 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
         if (value === '=') return 'equal operator';
         if (value === 'C') return 'clear';
         if (['%', '()', '1/x', 'x²', '√x'].includes(value)) return 'function';
-        if (['÷', '×', '-', '+', '⌫'].includes(value)) return 'operator'; // ⌫ agora é operator
+        if (['÷', '×', '-', '+', '⌫'].includes(value)) return 'operator';
         if (['π', 'eˣ', 'mod', 'sin', 'cos', 'log'].includes(value)) return 'scientific';
         if (value === '0') return 'zero';
         return '';
@@ -68,14 +70,26 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
                 )}
             </div>
 
-            {/* Operações - Agora com ⌫ */}
+            {/* Operações - agora com ícones */}
             <div className="operation-buttons">
-                <button className="operator" onClick={() => onPress('⌫')}>⌫</button>
-                <button className="operator" onClick={() => onPress('÷')}>÷</button>
-                <button className="operator" onClick={() => onPress('×')}>×</button>
-                <button className="operator" onClick={() => onPress('-')}>-</button>
-                <button className="operator" onClick={() => onPress('+')}>+</button>
-                <button className="equal operator" onClick={() => onPress('=')}>=</button>
+                <button className="operator" onClick={() => onPress('⌫')}>
+                    <AiOutlineBackward size={20} />
+                </button>
+                <button className="operator" onClick={() => onPress('÷')}>
+                    <FaDivide size={18} />
+                </button>
+                <button className="operator" onClick={() => onPress('×')}>
+                    <FaTimes size={18} />
+                </button>
+                <button className="operator" onClick={() => onPress('-')}>
+                    <FaMinus size={18} />
+                </button>
+                <button className="operator" onClick={() => onPress('+')}>
+                    <FaPlus size={18} />
+                </button>
+                <button className="equal operator" onClick={() => onPress('=')}>
+                    <FaEquals size={18} />
+                </button>
             </div>
         </div>
     );
