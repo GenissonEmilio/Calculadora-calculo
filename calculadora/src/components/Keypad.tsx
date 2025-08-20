@@ -1,4 +1,5 @@
 import type { KeypadProps } from "../types";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
     const getButtonClass = (value: string): string => {
@@ -70,7 +71,9 @@ export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
 
             {/* Operações - Agora com ⌫ */}
             <div className="operation-buttons">
-                <button className="operator" onClick={() => onPress('⌫')}>⌫</button>
+                <button className="operator" onClick={() => onPress('⌫')}>
+                    <FaDeleteLeft size={20}/>
+                </button>
                 <button className="operator" onClick={() => onPress('÷')}>÷</button>
                 <button className="operator" onClick={() => onPress('×')}>×</button>
                 <button className="operator" onClick={() => onPress('-')}>-</button>
