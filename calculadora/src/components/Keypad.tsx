@@ -3,16 +3,6 @@ import { FaDivide, FaTimes, FaPlus, FaMinus, FaEquals } from "react-icons/fa";
 import type { KeypadProps } from "../types";
 
 export const Keypad = ({ onPress, scientificMode }: KeypadProps) => {
-    const getButtonClass = (value: string): string => {
-        if (value === '=') return 'equal operator';
-        if (value === 'C') return 'clear';
-        if (['%', '()', '1/x', 'x²', '√x'].includes(value)) return 'function';
-        if (['÷', '×', '-', '+', '⌫'].includes(value)) return 'operator';
-        if (['π', 'eˣ', 'mod', 'sin', 'cos', 'log'].includes(value)) return 'scientific';
-        if (value === '0') return 'zero';
-        return '';
-    };
-
     return (
         <div className="keypad">
             {/* Área principal */}
