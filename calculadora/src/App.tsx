@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Display } from './components/Display';
 import { Keypad } from './components/Keypad';
 import { evaluateExpression } from './logic/calculatorEngine';
@@ -8,16 +8,21 @@ function App() {
   const [expression, setExpression] = useState('');
   const [result, setResult] = useState('');
   const [mode, setMode] = useState<'basic' | 'scientific'>('basic');
-  const [isParenthesisOpen, setIsParenthesisOpen] = useState(false);
+  const [_isParenthesisOpen, setIsParenthesisOpen] = useState(false);
+
+  // 🔹 extraímos a lógica do "=" para uma função separada
+  const calculateResult = () => {
+    try {
+      const calcResult = evaluateExpression(expression);
+      setResult(String(calcResult));
+    } catch {
+      setResult('Erro');
+    }
+  };
 
   const handleButtonPress = (value: string) => {
     if (value === '=') {
-      try {
-        const calcResult = evaluateExpression(expression);
-        setResult(String(calcResult));
-      } catch {
-        setResult('Erro');
-      }
+      calculateResult();
     } else if (value === 'C') {
       setExpression('');
       setResult('');
@@ -29,7 +34,7 @@ function App() {
       setMode(prev => prev === 'basic' ? 'scientific' : 'basic');
     } else if (value === 'eˣ') {
       setExpression(prev => prev + 'e^(');
-      setIsParenthesisOpen(true); // Marca que abrimos um parêntese
+      setIsParenthesisOpen(true);
     } else if (value === 'log') {
       setExpression(prev => prev + 'log(');
       setIsParenthesisOpen(true);
@@ -75,37 +80,37 @@ function App() {
         }
         return prev + '^2';
       });
-    } else if (value === '()') {
-      setExpression(prev => {
-    // Contar parênteses abertos e fechados
-    const openCount = (prev.match(/\(/g) || []).length;
-    const closeCount = (prev.match(/\)/g) || []).length;
-    const isOpen = openCount > closeCount;
-    
-    // Se há mais parênteses abertos, fechar
-    if (isOpen) {
-      setIsParenthesisOpen(false);
-      return prev + ')';
-    } else {
-        // Verificar se podemos abrir um novo parêntese
-        const lastChar = prev.slice(-1);
-        const canOpen = ['+', '-', '×', '÷', '^', '(', ''].includes(lastChar) || 
-                      /[0-9]/.test(lastChar) === false;
-        
-        if (canOpen) {
-          setIsParenthesisOpen(true);
-          return prev + '(';
-        } else {
-          // Se não pode abrir, adicionar operador de multiplicação implícita
-          setIsParenthesisOpen(true);
-          return prev + '×(';
-        }
-      }
-    });
     } else {
       setExpression(prev => prev + value);
     }
   };
+
+  // 🟢 Captura teclado físico
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const key = event.key;
+
+      if (/^[0-9]$/.test(key)) {
+        handleButtonPress(key);
+      } else if (['+', '-', '*', '/', '^'].includes(key)) {
+        handleButtonPress(key === '*' ? '×' : key === '/' ? '÷' : key);
+      } else if (key === 'Enter') {
+        event.preventDefault(); // evita submit em forms
+        calculateResult(); // chama a mesma lógica do "="
+      } else if (key === 'Backspace') {
+        handleButtonPress('⌫');
+      } else if (key === '.') {
+        handleButtonPress('.');
+      } else if (key === '(' || key === ')') {
+        handleButtonPress('()');
+      } else if (key === '%') {
+        handleButtonPress('%');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [expression]);
 
   return (
     <div className="app">
